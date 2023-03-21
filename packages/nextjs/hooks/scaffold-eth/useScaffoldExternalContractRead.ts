@@ -1,6 +1,5 @@
 import type { Abi } from "abitype";
 import { useContractRead } from "wagmi";
-import { useDeployedContractInfo } from "~~/hooks/scaffold-eth";
 import { getTargetNetwork } from "~~/utils/scaffold-eth";
 import { erc20ABI } from "wagmi";
 
@@ -21,7 +20,6 @@ export const useScaffoldExternalContractRead = <TReturn = any>(
 
   console.log("in useScaffoldExternalContractRead: ", contractAddress, functionName)
   const configuredChain = getTargetNetwork();
-  //const { data: deployedContractData } = useDeployedContractInfo(contractName);
 
   return useContractRead({
     chainId: configuredChain.id,

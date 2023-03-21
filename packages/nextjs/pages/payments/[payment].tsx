@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import { ContractData } from "~~/components/payments/ContractData";
 import { ContractInteraction } from "~~/components/payments/ContractInteraction";
-import { ContractReader } from "~~/components/payments/ContractReader";
 
 const Payments: NextPage = () => {
   const router = useRouter();

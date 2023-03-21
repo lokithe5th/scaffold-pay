@@ -1,7 +1,7 @@
 import { utils } from "ethers";
 import { useContractWrite, useNetwork } from "wagmi";
 import { getParsedEthersError } from "~~/components/scaffold-eth";
-import { useDeployedContractInfo, useTransactor } from "~~/hooks/scaffold-eth";
+import { useTransactor } from "~~/hooks/scaffold-eth";
 import { getTargetNetwork, notification } from "~~/utils/scaffold-eth";
 import { useScaffoldExternalContractRead } from "./useScaffoldExternalContractRead";
 

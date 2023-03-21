@@ -4,8 +4,6 @@ import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
 import { ArrowSmallRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
-//import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
-import { useScaffoldExternalContractRead } from "~~/hooks/scaffold-eth/useScaffoldExternalContractRead";
 
 export const ContractReader = (address:string) => {
   const [visible, setVisible] = useState(true);
@@ -13,7 +11,7 @@ export const ContractReader = (address:string) => {
 
   //const contractName:any = useScaffoldContractRead("ERC20", "name");
   //const token:any = useScaffoldExternalContractRead(address, "ERC20", "name");
-  //console.log(token);
+  console.log(address);
   const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
 
   return (
