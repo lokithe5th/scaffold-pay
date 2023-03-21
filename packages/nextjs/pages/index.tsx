@@ -53,7 +53,7 @@ const Home: NextPage = () => {
               <SparklesIcon className="h-8 w-8 fill-secondary" />
               <p>
                 Experiment with{" "}
-                <Link href="/payments/token/vendor/amount" passHref className="link">
+                <Link href="/payments/token" passHref className="link">
                   Example UI
                 </Link>{" "}
                 to build your own UI.

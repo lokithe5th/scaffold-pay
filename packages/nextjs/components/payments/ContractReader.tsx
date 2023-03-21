@@ -4,11 +4,16 @@ import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
 import { ArrowSmallRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+//import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import { useScaffoldExternalContractRead } from "~~/hooks/scaffold-eth/useScaffoldExternalContractRead";
 
-export const ContractInteraction = () => {
+export const ContractReader = (address:string) => {
   const [visible, setVisible] = useState(true);
   const [newGreeting, setNewGreeting] = useState("");
 
+  //const contractName:any = useScaffoldContractRead("ERC20", "name");
+  //const token:any = useScaffoldExternalContractRead(address, "ERC20", "name");
+  //console.log(token);
   const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
 
   return (
@@ -43,7 +48,7 @@ export const ContractInteraction = () => {
         </div>
 
         <div className="flex flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl shadow-lg border-2 border-primary">
-          <span className="text-4xl sm:text-6xl text-black">Make payment</span>
+          <span className="text-4xl sm:text-6xl text-black">Set a Greeting_</span>
 
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
             <input
@@ -71,7 +76,7 @@ export const ContractInteraction = () => {
           </div>
 
           <div className="mt-4 flex gap-2 items-start">
-            <span className="text-sm leading-tight">Price 12:</span>
+            <span className="text-sm leading-tight">Price:</span>
             <div className="badge badge-warning">0.01 ETH + Gas</div>
           </div>
         </div>

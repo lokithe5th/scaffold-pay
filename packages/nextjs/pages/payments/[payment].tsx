@@ -1,13 +1,17 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import type { NextPage } from "next";
-import { ContractData } from "~~/components/example-ui/ContractData";
-import { ContractInteraction } from "~~/components/example-ui/ContractInteraction";
+import { ContractData } from "~~/components/payments/ContractData";
+import { ContractInteraction } from "~~/components/payments/ContractInteraction";
+import { ContractReader } from "~~/components/payments/ContractReader";
 
 const Payments: NextPage = () => {
   const router = useRouter();
   const { payment, vendor, amount } = router.query;
-  console.log(payment, vendor, amount);
+  const tokenAddress:any = payment? payment.toString() : "";
+  //const tokenAddress:string = payment? payment[0] : ""
+  //const tokenAddress:string = payment?.toString();
+  console.log("In payments: ",tokenAddress, vendor, amount);
 
   return (
     <>
@@ -20,7 +24,7 @@ const Payments: NextPage = () => {
       </Head>
       <div className="grid lg:grid-cols-2 flex-grow" data-theme="exampleUi">
         <ContractInteraction />
-        <ContractData />
+        <ContractData address={tokenAddress}/>
       </div>
     </>
   );

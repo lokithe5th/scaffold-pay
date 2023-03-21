@@ -1,19 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 import { BigNumber } from "ethers";
 import Marquee from "react-fast-marquee";
+import { useScaffoldExternalContractRead } from "~~/hooks/scaffold-eth/useScaffoldExternalContractRead";
 import { useAnimationConfig, useScaffoldContractRead, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
 
 const MARQUEE_PERIOD_IN_SEC = 5;
 
-export const ContractData = () => {
+export const ContractData = (address:any) => {
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [isRightDirection, setIsRightDirection] = useState(false);
   const [marqueeSpeed, setMarqueeSpeed] = useState(0);
+  const tokenObject = address;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const greetingRef = useRef<HTMLDivElement>(null);
+  const functionName:string = "name";
+  console.log("in contractData: ", tokenObject);
+
+  const targetAddress:string = address["address"];
+  console.log("targetAddress: ", targetAddress);
+  const {data: name } = useScaffoldExternalContractRead<string>(targetAddress, functionName);
+  console.log("The read contract is: ", {data: name});
 
   const { data: totalCounter } = useScaffoldContractRead<BigNumber>("YourContract", "totalCounter");
+  //const { data : tokenName } = useScaffoldContractRead("ERC20", "name");
+  //console.log(tokenName)
 
   const { data: currentGreeting, isLoading: isGreetingLoading } = useScaffoldContractRead<string>(
     "YourContract",
