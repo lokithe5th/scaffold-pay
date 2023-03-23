@@ -6,21 +6,28 @@ import { useAnimationConfig, useScaffoldContractRead, useScaffoldEventSubscriber
 
 const MARQUEE_PERIOD_IN_SEC = 5;
 
-export const ContractData = (address:any) => {
+export const ContractData = (tokenAddress:any, userAddress:any) => {
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [isRightDirection, setIsRightDirection] = useState(false);
   const [marqueeSpeed, setMarqueeSpeed] = useState(0);
-  const tokenObject = address;
+  const tokenObject = tokenAddress;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const greetingRef = useRef<HTMLDivElement>(null);
   const functionName:string = "name";
+  const functionSymbol:string = "symbol";
+  const functionUserBalance:string = "balanceOf"
   console.log("in contractData: ", tokenObject);
 
-  const targetAddress:string = address["address"];
+  const targetAddress:string = tokenAddress["tokenAddress"];
+  const userTarget:string = tokenAddress["userAddress"];
   console.log("targetAddress: ", targetAddress);
+  console.log("User address: " , userTarget);
   const {data: name } = useScaffoldExternalContractRead<string>(targetAddress, functionName);
+  const {data: userBalance} = useScaffoldExternalContractRead<string>(targetAddress, functionUserBalance, [userTarget])
+
   console.log("The read contract is: ", {data: name});
+  console.log("The user balance is: ", { data: userBalance});
 
   const { data: totalCounter } = useScaffoldContractRead<BigNumber>("YourContract", "totalCounter");
   //const { data : tokenName } = useScaffoldContractRead("ERC20", "name");

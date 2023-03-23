@@ -14,11 +14,12 @@ export const useScaffoldExternalContractRead = <TReturn = any>(
   contractAddress: string,
   //contractName: string,
   functionName: string,
-  //args?: any[],
+  args?: any[],
   readConfig?: Parameters<typeof useContractRead>[0],
 ) => {
 
-  console.log("in useScaffoldExternalContractRead: ", contractAddress, functionName)
+  const receivedArgs:any[] = args? args : [];
+  console.log("in useScaffoldExternalContractRead: ", contractAddress, functionName, receivedArgs)
   const configuredChain = getTargetNetwork();
 
   return useContractRead({
@@ -27,7 +28,7 @@ export const useScaffoldExternalContractRead = <TReturn = any>(
     address: contractAddress,
     abi: erc20ABI as Abi,
     watch: true,
-    args: [],
+    args: receivedArgs,
     ...readConfig,
   }) as Omit<ReturnType<typeof useContractRead>, "data"> & {
     data: TReturn;

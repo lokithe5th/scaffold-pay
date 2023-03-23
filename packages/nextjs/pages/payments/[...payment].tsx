@@ -6,11 +6,15 @@ import { ContractInteraction } from "~~/components/payments/ContractInteraction"
 
 const Payments: NextPage = () => {
   const router = useRouter();
-  const { payment, vendor, amount } = router.query;
-  const tokenAddress:any = payment? payment.toString() : "";
+  const { payment } = router.query;
+  const tokenAddress:any = payment? payment[0].toString() : "";
+  const vendor:any = payment? payment[1].toString() : "";
+  const userAddress:any = payment? payment[2].toString() : "";
+  const amount:any = payment? payment[3].toString() : "";
+
   //const tokenAddress:string = payment? payment[0] : ""
   //const tokenAddress:string = payment?.toString();
-  console.log("In payments: ",tokenAddress, vendor, amount);
+  console.log("In payments: ", tokenAddress, " Vendor: ", vendor, " From: ", userAddress, " Amount: ", amount);
 
   return (
     <>
@@ -23,7 +27,7 @@ const Payments: NextPage = () => {
       </Head>
       <div className="grid lg:grid-cols-2 flex-grow" data-theme="exampleUi">
         <ContractInteraction />
-        <ContractData address={tokenAddress}/>
+        <ContractData tokenAddress={tokenAddress} userAddress={userAddress}/>
       </div>
     </>
   );
