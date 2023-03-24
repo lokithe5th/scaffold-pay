@@ -15,7 +15,6 @@ import { useScaffoldExternalContractRead } from "./useScaffoldExternalContractRe
  */
 export const useScaffoldExternalContractWrite = (contractAddress: string, functionName: string, args?: any[], value?: string) => {
   const configuredChain = getTargetNetwork();
-  //const { data: deployedContractData } = useScaffoldExternalContractWrite(contractAddress, functionName); //useDeployedContractInfo(contractName);
   const { chain } = useNetwork();
   const writeTx = useTransactor();
 

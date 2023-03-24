@@ -19,7 +19,6 @@ export const useScaffoldExternalContractRead = <TReturn = any>(
 ) => {
 
   const receivedArgs:any[] = args? args : [];
-  console.log("in useScaffoldExternalContractRead: ", contractAddress, functionName, receivedArgs)
   const configuredChain = getTargetNetwork();
 
   return useContractRead({

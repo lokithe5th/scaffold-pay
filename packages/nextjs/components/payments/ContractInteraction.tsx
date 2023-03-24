@@ -9,7 +9,6 @@ import { getBlockExplorerTxLink, getTargetNetwork } from "~~/utils/scaffold-eth"
 import { getNetwork } from "@ethersproject/networks";
 
 export const ContractInteraction = (paymentDetails:any) => {
-  console.log(paymentDetails);
   const router = useRouter();
 
   const [visible, setVisible] = useState(true);

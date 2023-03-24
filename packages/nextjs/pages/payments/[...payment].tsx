@@ -13,8 +13,6 @@ const Payments: NextPage = () => {
   const userAddress:any = payment? payment[2].toString() : "";
   const amount:any = payment? payment[3].toString() : "";
 
-  console.log("In payments: ", tokenAddress, " Vendor: ", vendor, " From: ", userAddress, " Amount: ", amount);
-
   return (
     <>
       <Head>
