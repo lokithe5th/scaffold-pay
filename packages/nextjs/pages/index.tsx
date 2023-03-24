@@ -15,15 +15,18 @@ const Home: NextPage = () => {
         <div className="px-5">
           <h1 className="text-center mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">scaffold-eth 2</span>
+            <span className="block text-4xl font-bold">🤑🤑 scaffold-pay 🤑🤑</span>
           </h1>
           <p className="text-center text-lg">
-            Get started by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold">packages/nextjs/pages/index.tsx</code>
+            A simple way to accept any ERC20 token as payment from your customers.
           </p>
           <p className="text-center text-lg">
-            Edit your smart contract <code className="italic bg-base-300 text-base font-bold">YourContract.sol</code> in{" "}
-            <code className="italic bg-base-300 text-base font-bold">packages/hardhat/contracts</code>
+            Need to accept tokens not supported by Payment Processors? 😟 
+          </p>
+          <p className="text-center text-lg">
+            No problem! 
+          </p>
+          <p>Simply redirect your users with <code>/payments/tokenAddress/toAddress/fromAddress/amount</code>
           </p>
         </div>
 
@@ -32,31 +35,18 @@ const Home: NextPage = () => {
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
               <BugAntIcon className="h-8 w-8 fill-secondary" />
               <p>
-                Tinker with your smart contract using the{" "}
-                <Link href="/debug" passHref className="link">
-                  Debug Contract
-                </Link>{" "}
-                tab.
+              The npm package scaffold-pay-package can be integrated into your checkout page. It will listen for an event that matches your transaction data, and return true once it has executed successfully.
               </p>
             </div>
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
               <SparklesIcon className="h-8 w-8 fill-secondary" />
               <p>
-                Experiment with{" "}
-                <Link href="/example-ui" passHref className="link">
-                  Example UI
+              Redirect your users here and Scaffold-Pay fills in the Payment Details. </p>
+              <p>Experiment with{" "}
+                <Link href="/payments/token/toAddress/fromAddress/100000" passHref className="link">
+                  Payments
                 </Link>{" "}
-                to build your own UI.
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <SparklesIcon className="h-8 w-8 fill-secondary" />
-              <p>
-                Experiment with{" "}
-                <Link href="/payments/token" passHref className="link">
-                  Example UI
-                </Link>{" "}
-                to build your own UI.
+                to get an idea for what your users will see.
               </p>
             </div>
           </div>
