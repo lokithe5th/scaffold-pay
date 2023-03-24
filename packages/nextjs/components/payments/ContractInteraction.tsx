@@ -21,7 +21,7 @@ export const ContractInteraction = (paymentDetails:any) => {
     if (targetNetwork.chainId == 31337) {
       alert(`Transaction Id: ${hash["hash"]}`);
     } else {
-      const txExplorer = getBlockExplorerTxLink(targetNetwork, hash);
+      const txExplorer = getBlockExplorerTxLink(targetNetwork, hash["hash"]);
       alert(`Transaction Id: ${hash["hash"]}.`);
       alert(`You will now be rerouted to the block explorer where you can view the transaction`);
       router.push(txExplorer);
