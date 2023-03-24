@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import type { NextPage } from "next";
 import { BugAntIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import FallingDollarBills from "~~/components/FallingDollarBills";
 
 const Home: NextPage = () => {
   return (
@@ -35,7 +36,7 @@ const Home: NextPage = () => {
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
               <BugAntIcon className="h-8 w-8 fill-secondary" />
               <p>
-              The npm package scaffold-pay-package can be integrated into your checkout page. It will listen for an event that matches your transaction data, and return true once it has executed successfully.
+              An npm package (still a work in progress) <code>scaffold-pay</code> can be integrated into your checkout page. It will listen for an event that matches your transaction data, and return true once it has executed successfully.
               </p>
             </div>
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
@@ -51,6 +52,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
+        <FallingDollarBills />
       </div>
     </>
   );

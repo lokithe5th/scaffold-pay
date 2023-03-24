@@ -1,0 +1,24 @@
+/* styles/fallingDollarBills.module.css */
+@keyframes fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.dollar {
+  font-size: 2rem;
+  position: absolute;
+  animation: fall linear infinite;
+  animation-duration: 5s;
+}
+
+.background {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+ 
