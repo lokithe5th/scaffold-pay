@@ -17,7 +17,7 @@ export const ContractInteraction = (paymentDetails:any) => {
 
   const handlePaymentAttempt = async () => {
     const targetNetwork = getNetwork(getTargetNetwork().id);
-    let hash:any = await writeAsync();
+    const hash:any = await writeAsync();
     if (targetNetwork.chainId == 31337) {
       alert(`Transaction Id: ${hash["hash"]}`);
     } else {

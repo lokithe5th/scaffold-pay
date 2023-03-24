@@ -1,17 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import { BigNumber } from "ethers";
-import Marquee from "react-fast-marquee";
 import { useScaffoldExternalContractRead } from "~~/hooks/scaffold-eth/useScaffoldExternalContractRead";
-import { useAnimationConfig, useScaffoldContractRead, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
 import { Address } from "../scaffold-eth";
 
-const MARQUEE_PERIOD_IN_SEC = 5;
-
-export const ContractData = (tokenAddress:any, userAddress:any) => {
-  const tokenObject = tokenAddress;
-
-  const functionName:string = "name";
-  const functionUserBalance:string = "balanceOf"
+export const ContractData = (tokenAddress:any) => {
+  const functionName = "name";
+  const functionUserBalance = "balanceOf"
   const targetAddress:string = tokenAddress["tokenAddress"];
   const userTarget:string = tokenAddress["userAddress"];
   const recipientAddress:string = tokenAddress["recipient"];
