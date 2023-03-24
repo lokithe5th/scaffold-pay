@@ -27,7 +27,7 @@ const Home: NextPage = () => {
           <p className="text-center text-lg">
             No problem! 
           </p>
-          <p>Simply redirect your users with <code>/payments/tokenAddress/toAddress/fromAddress/amount</code>
+          <p>Simply redirect your users with <code>scaffold-pay.vercel.app/payments/tokenAddress/toAddress/fromAddress/amount</code>
           </p>
         </div>
 
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
               <BugAntIcon className="h-8 w-8 fill-secondary" />
               <p>
-              An npm package (still a work in progress) <code>scaffold-pay</code> can be integrated into your checkout page. It will listen for an event that matches your transaction data, and return true once it has executed successfully.
+              A still-in-development npm package, <code>scaffold-pay</code>, is intended to be integrated into your checkout page. It will listen for an event that matches your transaction data, and return true once it has executed successfully. Seamlessly integrating into your payment flow.
               </p>
             </div>
             <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
