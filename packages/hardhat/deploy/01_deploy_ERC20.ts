@@ -21,7 +21,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("ERC20", {
+  await deploy("Token", {
     from: deployer,
     // Contract constructor arguments
     args: ["Test Token", "TST"],

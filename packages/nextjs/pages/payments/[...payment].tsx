@@ -26,8 +26,8 @@ const Payments: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </Head>
       <div className="grid lg:grid-cols-2 flex-grow" data-theme="exampleUi">
-        <ContractInteraction />
-        <ContractData tokenAddress={tokenAddress} userAddress={userAddress}/>
+        <ContractData tokenAddress={tokenAddress} userAddress={userAddress} recipient={vendor}/>
+        <ContractInteraction tokenAddress={tokenAddress} userAddress={userAddress} recipient={vendor} amount={amount}/>
       </div>
     </>
   );

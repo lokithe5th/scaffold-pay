@@ -1,5 +1,6 @@
 import { utils } from "ethers";
-import { useContractWrite, useNetwork } from "wagmi";
+import { erc20ABI, useContractWrite, useNetwork } from "wagmi";
+import type { Abi } from "abitype";
 import { getParsedEthersError } from "~~/components/scaffold-eth";
 import { useTransactor } from "~~/hooks/scaffold-eth";
 import { getTargetNetwork, notification } from "~~/utils/scaffold-eth";
@@ -14,15 +15,15 @@ import { useScaffoldExternalContractRead } from "./useScaffoldExternalContractRe
  */
 export const useScaffoldExternalContractWrite = (contractAddress: string, functionName: string, args?: any[], value?: string) => {
   const configuredChain = getTargetNetwork();
-  const { data: deployedContractData } = useScaffoldExternalContractRead(contractAddress, functionName); //useDeployedContractInfo(contractName);
+  //const { data: deployedContractData } = useScaffoldExternalContractWrite(contractAddress, functionName); //useDeployedContractInfo(contractName);
   const { chain } = useNetwork();
   const writeTx = useTransactor();
 
   const wagmiContractWrite = useContractWrite({
     mode: "recklesslyUnprepared",
     chainId: configuredChain.id,
-    address: deployedContractData?.address,
-    abi: deployedContractData?.abi,
+    address: contractAddress,
+    abi: erc20ABI as Abi,
     args,
     functionName,
     overrides: {
@@ -31,7 +32,7 @@ export const useScaffoldExternalContractWrite = (contractAddress: string, functi
   });
 
   const sendContractWriteTx = async () => {
-    if (!deployedContractData) {
+    if (!contractAddress) {
       notification.error("Target Contract is not deployed, did you forgot to run `yarn deploy`?");
       return;
     }

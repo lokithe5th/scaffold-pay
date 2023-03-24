@@ -4,12 +4,17 @@ import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
 import { ArrowSmallRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useScaffoldExternalContractWrite } from "~~/hooks/scaffold-eth/useScaffoldExternalContractWrite";
+import { EtherInput } from "../scaffold-eth";
 
-export const ContractInteraction = () => {
+export const ContractInteraction = (paymentDetails:any) => {
+  console.log(paymentDetails);
+
   const [visible, setVisible] = useState(true);
-  const [newGreeting, setNewGreeting] = useState("");
 
-  const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
+  //const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
+  const { writeAsync, isLoading } = useScaffoldExternalContractWrite(paymentDetails["tokenAddress"], "transfer", [paymentDetails["recipient"], paymentDetails["amount"]]);
+  console.log("Write: ", writeAsync);
 
   return (
     <div className="flex bg-base-300 relative pb-10">
@@ -22,15 +27,10 @@ export const ContractInteraction = () => {
             <span className="text-3xl">👋🏻</span>
             <div>
               <div>
-                In this page you can see how some of our <strong>hooks & components</strong> work, and how you can bring
-                them to life with your own design! Have fun and try it out!
+                The token amount and target recipient has automatically been completed for you.
               </div>
               <div className="mt-2">
-                Check out{" "}
-                <code className="italic bg-base-300 text-base font-bold [word-spacing:-0.5rem]">
-                  packages / nextjs/pages / example-ui.tsx
-                </code>{" "}
-                and its underlying components.
+                Review the transaction details and press send, as simple as that 👌
               </div>
             </div>
           </div>
@@ -43,14 +43,13 @@ export const ContractInteraction = () => {
         </div>
 
         <div className="flex flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl shadow-lg border-2 border-primary">
-          <span className="text-4xl sm:text-6xl text-black">Make payment</span>
+          <span className="text-1xl sm:text-6xl text-black">Make Payment</span>
 
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
             <input
               type="text"
-              placeholder="Write your greeting here"
+              placeholder={paymentDetails["amount"]}
               className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
-              onChange={e => setNewGreeting(e.target.value)}
             />
             <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
               <div className="flex rounded-full border-2 border-primary p-1">
@@ -71,8 +70,7 @@ export const ContractInteraction = () => {
           </div>
 
           <div className="mt-4 flex gap-2 items-start">
-            <span className="text-sm leading-tight">Price 12:</span>
-            <div className="badge badge-warning">0.01 ETH + Gas</div>
+            <div className="badge badge-warning">Your transaction should complete in the background ✌</div>
           </div>
         </div>
       </div>
