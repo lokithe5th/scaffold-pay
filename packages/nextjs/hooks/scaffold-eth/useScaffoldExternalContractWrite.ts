@@ -47,7 +47,9 @@ export const useScaffoldExternalContractWrite = (contractAddress: string, functi
 
     if (wagmiContractWrite.writeAsync) {
       try {
-        await writeTx(wagmiContractWrite.writeAsync());
+        const result = await writeTx(wagmiContractWrite.writeAsync());
+        console.log("Result: ", result? result["hash"] : "nohash");
+        return result;
       } catch (e: any) {
         const message = getParsedEthersError(e);
         notification.error(message);

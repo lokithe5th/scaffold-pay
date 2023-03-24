@@ -3,18 +3,32 @@ import { CopyIcon } from "./assets/CopyIcon";
 import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
 import { ArrowSmallRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { useScaffoldExternalContractWrite } from "~~/hooks/scaffold-eth/useScaffoldExternalContractWrite";
-import { EtherInput } from "../scaffold-eth";
+import { useRouter } from "next/router";
+import { getBlockExplorerTxLink, getTargetNetwork } from "~~/utils/scaffold-eth";
+import { getNetwork } from "@ethersproject/networks";
 
 export const ContractInteraction = (paymentDetails:any) => {
   console.log(paymentDetails);
+  const router = useRouter();
 
   const [visible, setVisible] = useState(true);
 
-  //const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
   const { writeAsync, isLoading } = useScaffoldExternalContractWrite(paymentDetails["tokenAddress"], "transfer", [paymentDetails["recipient"], paymentDetails["amount"]]);
-  console.log("Write: ", writeAsync);
+
+  const handlePaymentAttempt = async () => {
+    const targetNetwork = getNetwork(getTargetNetwork().id);
+    let hash:any = await writeAsync();
+    if (targetNetwork.chainId == 31337) {
+      alert(`Transaction Id: ${hash["hash"]}`);
+    } else {
+      const txExplorer = getBlockExplorerTxLink(targetNetwork, hash);
+      alert(`Transaction Id: ${hash["hash"]}.`);
+      alert(`You will now be rerouted to the block explorer where you can view the transaction`);
+      router.push(txExplorer);
+
+    }
+  }
 
   return (
     <div className="flex bg-base-300 relative pb-10">
@@ -43,7 +57,7 @@ export const ContractInteraction = (paymentDetails:any) => {
         </div>
 
         <div className="flex flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl shadow-lg border-2 border-primary">
-          <span className="text-1xl sm:text-6xl text-black">Make Payment</span>
+          <span className="text-3xl font-bold text-gray-900 mb-4">Make Payment</span>
 
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
             <input
@@ -57,7 +71,7 @@ export const ContractInteraction = (paymentDetails:any) => {
                   className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest ${
                     isLoading ? "loading" : ""
                   }`}
-                  onClick={writeAsync}
+                  onClick={handlePaymentAttempt}
                 >
                   {!isLoading && (
                     <>

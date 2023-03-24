@@ -6,14 +6,13 @@ import { ContractInteraction } from "~~/components/payments/ContractInteraction"
 
 const Payments: NextPage = () => {
   const router = useRouter();
+  // The variables are provided in order token/to/from/amount
   const { payment } = router.query;
   const tokenAddress:any = payment? payment[0].toString() : "";
   const vendor:any = payment? payment[1].toString() : "";
   const userAddress:any = payment? payment[2].toString() : "";
   const amount:any = payment? payment[3].toString() : "";
 
-  //const tokenAddress:string = payment? payment[0] : ""
-  //const tokenAddress:string = payment?.toString();
   console.log("In payments: ", tokenAddress, " Vendor: ", vendor, " From: ", userAddress, " Amount: ", amount);
 
   return (

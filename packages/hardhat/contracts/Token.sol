@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract Token is ERC20 {
 
     constructor(string memory _name, string memory _symbol) ERC20(_name, _symbol) {
-        _mint(0x8BAcE0a7F64a5A2fAA3DfD757ecd3E3E25AC3473, 100 * 10**18);
+        _mint(0x4b5E55D7aB0a3d438b1047fC86D88b1335093c10, 100 * 10**18);
     }
 
 }
